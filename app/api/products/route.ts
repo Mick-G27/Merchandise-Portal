@@ -33,7 +33,6 @@ export async function GET(request: NextRequest) {
     const maxPrice = searchParams.get('maxPrice');
     const sort = searchParams.get('sort') || 'createdAt';
 
-    // Build query
     const query: any = {};
     
     if (category) {
@@ -60,7 +59,7 @@ export async function GET(request: NextRequest) {
 
     query.inStock = true;
 
-    // Execute query
+
     const skip = (page - 1) * limit;
     const products = await Product.find(query)
       .sort({ [sort]: sort === 'price' ? 1 : -1 })
